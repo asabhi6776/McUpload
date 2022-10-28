@@ -1,7 +1,7 @@
 version: "3"
 services:
     modupload:
-        image: asabhi6776/modupload:1.3
+        image: asabhi6776/modupload:latest
         stdin_open: true
         tty: true
         restart: always
