@@ -15,6 +15,8 @@ git clone https://github.com/asabhi6776/minecraft_mod_upload.git
 cd minecraft_mod_upload
 vim .env #customize as per your need
 docker-compose up -d
+# create a user by running following command
+docker exec -it modupload python3 manage.py createsuperuser
 ```
 
 ## Contributing
