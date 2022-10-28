@@ -1,0 +1,32 @@
+version: "3"
+services:
+    modupload:
+        image: asabhi6776/modupload:latest
+        stdin_open: true
+        tty: true
+        restart: always
+        working_dir: /root/src/modupload
+        entrypoint:
+        - /bin/bash
+        - -c
+        - |
+          python3 manage.py runserver --insecure 0.0.0.0:9107
+        ports:
+        - "9107:9107"
+        healthcheck:
+            test: "curl -f -s -o /dev/null -I http://${MODUPLOAD_IP}:9107/login/"
+            interval: 10s
+            timeout: 10s
+            retries: 5
+        logging:
+            options:
+                tag: "{{.Name}} {{.ImageName}}"
+        networks:
+            mine-network:
+                ipv4_address: ${MODUPLOAD_IP}
+        volumes:
+            - ${DATADIR}:/root/src/modupload/media/files
+networks:
+    mine-network:
+        external:
+            name: mine-network

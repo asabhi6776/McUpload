@@ -13,8 +13,11 @@ To run this In container we need to run following commands
 ```bash
 git clone https://github.com/asabhi6776/minecraft_mod_upload.git
 cd minecraft_mod_upload
+docker network create --subnet=172.32.0.0/16 mine-network
 vim .env #customize as per your need
 docker-compose up -d
+# create a user by running following command
+docker exec -it modupload python3 manage.py createsuperuser
 ```
 
 ## Contributing
